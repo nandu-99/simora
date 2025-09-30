@@ -1,10 +1,11 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs-extra');
+const os = require('os')
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const uploadsPath = path.join(__dirname, '..', '..', 'uploads');
+    const uploadsPath = path.join(os.tmpdir(), "uploads")
     fs.ensureDirSync(uploadsPath);
     cb(null, uploadsPath);
   },
